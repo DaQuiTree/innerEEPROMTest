@@ -1,4 +1,4 @@
-C51 COMPILER V8.08   MAIN                                                                  06/04/2017 18:38:50 PAGE 1   
+C51 COMPILER V8.08   MAIN                                                                  06/04/2017 19:03:50 PAGE 1   
 
 
 C51 COMPILER V8.08, COMPILATION OF MODULE MAIN
@@ -18,18 +18,18 @@ line level    source
    8   1              uint8 temp;
    9   1      
   10   1              InitLCD12864();
-  11   1              temp = Byte_read(0x2000);
+  11   1              temp = E2ByteRead(0x2000);
   12   1              str[0] = (temp >> 4) + '0';
   13   1              str[1] = (temp & 0x0F) + '0';    
-  14   1          Sector_erase(0x2000);                       //ÉÈÇø²Á³ý      
-  15   1          Byte_program(0x2000,0x99);                  //Ð´EEPROM      
+  14   1          E2SectorErase(0x2000);                       //ÉÈÇø²Á³ý      
+  15   1          E2ByteProgram(0x2000,0x99);                  //Ð´EEPROM      
   16   1          _nop_();     
   17   1          _nop_();     
   18   1          _nop_();   
   19   1          _nop_();     
   20   1          _nop_();     
   21   1          _nop_();     
-  22   1          temp = Byte_read(0x2000);                       //¶ÁEEPROM 
+  22   1          temp = E2ByteRead(0x2000);                       //¶ÁEEPROM 
   23   1              str[2] = (temp >> 4) + '0';
   24   1              str[3] = (temp & 0x0F) + '0';
   25   1              

@@ -1,4 +1,4 @@
-C51 COMPILER V8.08   INNERE2PROM                                                           06/04/2017 18:38:50 PAGE 1   
+C51 COMPILER V8.08   INNERE2PROM                                                           06/04/2017 19:03:49 PAGE 1   
 
 
 C51 COMPILER V8.08, COMPILATION OF MODULE INNERE2PROM
@@ -42,7 +42,7 @@ line level    source
   32   1      }     
   33          
   34          /*********************字节读**********************/       
-  35          uint8 Byte_read(uint16 byte_addr)     
+  35          uint8 E2ByteRead(uint16 byte_addr)     
   36          {     
   37   1          EA = 0;                                     //关中断      
   38   1          ISP_CONTR = En_Wait_TIME;                   //开启ISP&IAP，并送等待时间      
@@ -57,12 +57,12 @@ line level    source
   47   1          return (ISP_DATA);     
   48   1      }       
   49          /*********************字节编程*********************/     
-  50          void Byte_program(uint16 byte_addr,uint8 isp_iap_data)     
+  50          void E2ByteProgram(uint16 byte_addr,uint8 isp_iap_data)     
   51          {     
   52   1          EA = 0;                                     //关中断      
   53   1          ISP_CONTR = En_Wait_TIME;                   //开启ISP&IAP，并送等待时间      
   54   1          ISP_CMD = Prog_COM;                         //送字节编程命令字        
-C51 COMPILER V8.08   INNERE2PROM                                                           06/04/2017 18:38:50 PAGE 2   
+C51 COMPILER V8.08   INNERE2PROM                                                           06/04/2017 19:03:49 PAGE 2   
 
   55   1          ISP_ADDRH = (uint8)(byte_addr >> 8);          //送地址高字节      
   56   1          ISP_ADDRL = (uint8)(byte_addr & 0x00ff);    //送地址低字节          
@@ -75,7 +75,7 @@ line level    source
   63   1      }     
   64               
   65          /*********************扇区擦除*********************/     
-  66          void Sector_erase(uint16 sector_addr)                   
+  66          void E2SectorErase(uint16 sector_addr)                  
   67          {     
   68   1          EA = 0;                                     //关中断      
   69   1          ISP_CONTR = En_Wait_TIME;                   //开启ISP&IAP;并送等待时间      

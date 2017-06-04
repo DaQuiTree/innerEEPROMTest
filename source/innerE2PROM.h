@@ -8,8 +8,8 @@
  #ifndef _INNERE2PROM_H
  #define _INNERE2PROM_H  
 
- void Sector_erase(uint16 sector_addr);     		
- void Byte_program(uint16 byte_addr,uint8 isp_iap_data);
- uint8 Byte_read(uint16 byte_addr);
+ void E2SectorErase(uint16 sector_addr);     		
+ void E2ByteProgram(uint16 byte_addr,uint8 isp_iap_data);
+ uint8 E2ByteRead(uint16 byte_addr);
 
  #endif

@@ -32,7 +32,7 @@ void ISP_IAP_disable()
 }     
 
 /*********************字节读**********************/       
-uint8 Byte_read(uint16 byte_addr)     
+uint8 E2ByteRead(uint16 byte_addr)     
 {     
     EA = 0;                                     //关中断      
     ISP_CONTR = En_Wait_TIME;                   //开启ISP&IAP，并送等待时间      
@@ -47,7 +47,7 @@ uint8 Byte_read(uint16 byte_addr)
     return (ISP_DATA);     
 }       
 /*********************字节编程*********************/     
-void Byte_program(uint16 byte_addr,uint8 isp_iap_data)     
+void E2ByteProgram(uint16 byte_addr,uint8 isp_iap_data)     
 {     
     EA = 0;                                     //关中断      
     ISP_CONTR = En_Wait_TIME;                   //开启ISP&IAP，并送等待时间      
@@ -63,7 +63,7 @@ void Byte_program(uint16 byte_addr,uint8 isp_iap_data)
 }     
      
 /*********************扇区擦除*********************/     
-void Sector_erase(uint16 sector_addr)     		
+void E2SectorErase(uint16 sector_addr)     		
 {     
     EA = 0;                                     //关中断      
     ISP_CONTR = En_Wait_TIME;                   //开启ISP&IAP;并送等待时间      

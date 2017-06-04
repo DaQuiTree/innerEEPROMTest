@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.05                                                        06/04/2017  18:38:51  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.05                                                        06/04/2017  19:03:50  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.05, INVOKED BY:
@@ -43,9 +43,9 @@ LINK MAP OF MODULE:  ..\output\IET (?C_STARTUP)
             CODE    0289H     0044H     UNIT         ?C?LIB_CODE
             CODE    02CDH     002BH     UNIT         ?PR?_LCDSETCURSOR?LCD12864
             CODE    02F8H     0022H     UNIT         ?PR?_LCDSHOWSTR?LCD12864
-            CODE    031AH     0020H     UNIT         ?PR?_BYTE_READ?INNERE2PROM
-            CODE    033AH     0020H     UNIT         ?PR?_BYTE_PROGRAM?INNERE2PROM
-            CODE    035AH     001EH     UNIT         ?PR?_SECTOR_ERASE?INNERE2PROM
+            CODE    031AH     0020H     UNIT         ?PR?_E2BYTEREAD?INNERE2PROM
+            CODE    033AH     0020H     UNIT         ?PR?_E2BYTEPROGRAM?INNERE2PROM
+            CODE    035AH     001EH     UNIT         ?PR?_E2SECTORERASE?INNERE2PROM
             CODE    0378H     001EH     UNIT         ?PR?INITLCD12864?LCD12864
             CODE    0396H     0019H     UNIT         ?PR?_LCDWRITECMD?LCD12864
             CODE    03AFH     0019H     UNIT         ?PR?LCDCLEARALL?LCD12864
@@ -59,7 +59,7 @@ LINK MAP OF MODULE:  ..\output\IET (?C_STARTUP)
             CODE    042AH     0005H     UNIT         ?PR?LCDCANCELCURSOR?LCD12864
 
 
-BL51 BANKED LINKER/LOCATER V6.05                                                      06/04/2017  18:38:51  PAGE 2
+BL51 BANKED LINKER/LOCATER V6.05                                                      06/04/2017  19:03:50  PAGE 2
 
 
 
@@ -74,9 +74,9 @@ SEGMENT                                   DATA_GROUP
 
 ?PR?MAIN?MAIN                           0008H    0004H
   +--> ?PR?INITLCD12864?LCD12864
-  +--> ?PR?_BYTE_READ?INNERE2PROM
-  +--> ?PR?_SECTOR_ERASE?INNERE2PROM
-  +--> ?PR?_BYTE_PROGRAM?INNERE2PROM
+  +--> ?PR?_E2BYTEREAD?INNERE2PROM
+  +--> ?PR?_E2SECTORERASE?INNERE2PROM
+  +--> ?PR?_E2BYTEPROGRAM?INNERE2PROM
   +--> ?PR?_LCDSHOWSTR?LCD12864
 
 ?PR?INITLCD12864?LCD12864               -----    -----
@@ -97,13 +97,13 @@ SEGMENT                                   DATA_GROUP
 ?PR?_LCDWRITEDATA?LCD12864              -----    -----
   +--> ?PR?LCDWAITREADY?LCD12864
 
-?PR?_BYTE_READ?INNERE2PROM              -----    -----
+?PR?_E2BYTEREAD?INNERE2PROM             -----    -----
   +--> ?PR?ISP_IAP_DISABLE?INNERE2PROM
 
-?PR?_SECTOR_ERASE?INNERE2PROM           -----    -----
+?PR?_E2SECTORERASE?INNERE2PROM          -----    -----
   +--> ?PR?ISP_IAP_DISABLE?INNERE2PROM
 
-?PR?_BYTE_PROGRAM?INNERE2PROM           -----    -----
+?PR?_E2BYTEPROGRAM?INNERE2PROM          -----    -----
   +--> ?PR?ISP_IAP_DISABLE?INNERE2PROM
 
 
@@ -119,7 +119,7 @@ SYMBOL TABLE OF MODULE:  ..\output\IET (?C_STARTUP)
   C:0000H         PUBLIC        ?C_STARTUP
   D:00E0H         SYMBOL        ACC
   D:00F0H         SYMBOL        B
-BL51 BANKED LINKER/LOCATER V6.05                                                      06/04/2017  18:38:51  PAGE 3
+BL51 BANKED LINKER/LOCATER V6.05                                                      06/04/2017  19:03:50  PAGE 3
 
 
   D:0083H         SYMBOL        DPH
@@ -157,8 +157,8 @@ SYMBOL TABLE OF MODULE:  ..\output\IET (?C_STARTUP)
   D:00B0H         PUBLIC        P3
   D:00E6H         PUBLIC        ISP_TRIG
   B:00A8H.7       PUBLIC        EA
+  C:031AH         PUBLIC        _E2ByteRead
   D:00A8H         PUBLIC        IE
-  C:031AH         PUBLIC        _Byte_read
   D:00B8H         PUBLIC        IP
   D:00E5H         PUBLIC        ISP_CMD
   D:00E3H         PUBLIC        ISP_ADDRH
@@ -166,11 +166,11 @@ SYMBOL TABLE OF MODULE:  ..\output\IET (?C_STARTUP)
   D:0088H         PUBLIC        TCON
   D:00E4H         PUBLIC        ISP_ADDRL
   D:00E7H         PUBLIC        ISP_CONTR
+  C:035AH         PUBLIC        _E2SectorErase
   C:041DH         PUBLIC        ISP_IAP_disable
-  C:035AH         PUBLIC        _Sector_erase
   D:00C8H         PUBLIC        T2CON
   D:00E2H         PUBLIC        ISP_DATA
-  C:033AH         PUBLIC        _Byte_program
+  C:033AH         PUBLIC        _E2ByteProgram
   D:00D0H         PUBLIC        PSW
   -------         PROC          ISP_IAP_DISABLE
   C:041DH         LINE#         27
@@ -179,11 +179,11 @@ SYMBOL TABLE OF MODULE:  ..\output\IET (?C_STARTUP)
   C:0420H         LINE#         30
   C:0422H         LINE#         31
   C:0424H         LINE#         32
-BL51 BANKED LINKER/LOCATER V6.05                                                      06/04/2017  18:38:51  PAGE 4
+BL51 BANKED LINKER/LOCATER V6.05                                                      06/04/2017  19:03:50  PAGE 4
 
 
   -------         ENDPROC       ISP_IAP_DISABLE
-  -------         PROC          _BYTE_READ
+  -------         PROC          _E2BYTEREAD
   D:0004H         SYMBOL        byte_addr
   C:031AH         LINE#         35
   C:031EH         LINE#         36
@@ -199,8 +199,8 @@ SYMBOL TABLE OF MODULE:  ..\output\IET (?C_STARTUP)
   C:0335H         LINE#         46
   C:0337H         LINE#         47
   C:0339H         LINE#         48
-  -------         ENDPROC       _BYTE_READ
-  -------         PROC          _BYTE_PROGRAM
+  -------         ENDPROC       _E2BYTEREAD
+  -------         PROC          _E2BYTEPROGRAM
   D:0002H         SYMBOL        byte_addr
   D:0005H         SYMBOL        isp_iap_data
   C:033AH         LINE#         50
@@ -217,8 +217,8 @@ SYMBOL TABLE OF MODULE:  ..\output\IET (?C_STARTUP)
   C:0354H         LINE#         61
   C:0357H         LINE#         62
   C:0359H         LINE#         63
-  -------         ENDPROC       _BYTE_PROGRAM
-  -------         PROC          _SECTOR_ERASE
+  -------         ENDPROC       _E2BYTEPROGRAM
+  -------         PROC          _E2SECTORERASE
   D:0004H         SYMBOL        sector_addr
   C:035AH         LINE#         66
   C:035EH         LINE#         67
@@ -233,13 +233,13 @@ SYMBOL TABLE OF MODULE:  ..\output\IET (?C_STARTUP)
   C:0372H         LINE#         76
   C:0375H         LINE#         77
   C:0377H         LINE#         78
-  -------         ENDPROC       _SECTOR_ERASE
+  -------         ENDPROC       _E2SECTORERASE
   -------         ENDMOD        INNERE2PROM
 
   -------         MODULE        MAIN
   C:0000H         SYMBOL        _ICE_DUMMY_
   D:0090H         PUBLIC        P1
-BL51 BANKED LINKER/LOCATER V6.05                                                      06/04/2017  18:38:51  PAGE 5
+BL51 BANKED LINKER/LOCATER V6.05                                                      06/04/2017  19:03:50  PAGE 5
 
 
   D:00A0H         PUBLIC        P2
@@ -299,7 +299,7 @@ SYMBOL TABLE OF MODULE:  ..\output\IET (?C_STARTUP)
   C:03AFH         PUBLIC        LCDClearAll
   C:0095H         PUBLIC        _LCDShowImage
   C:03CEH         PUBLIC        _LCDWriteData
-BL51 BANKED LINKER/LOCATER V6.05                                                      06/04/2017  18:38:51  PAGE 6
+BL51 BANKED LINKER/LOCATER V6.05                                                      06/04/2017  19:03:50  PAGE 6
 
 
   C:0003H         PUBLIC        _LCDDrawArea
@@ -359,7 +359,7 @@ SYMBOL TABLE OF MODULE:  ..\output\IET (?C_STARTUP)
   C:03DDH         LINE#         38
   -------         ENDPROC       _LCDWRITEDATA
   -------         PROC          INITLCD12864
-BL51 BANKED LINKER/LOCATER V6.05                                                      06/04/2017  18:38:51  PAGE 7
+BL51 BANKED LINKER/LOCATER V6.05                                                      06/04/2017  19:03:50  PAGE 7
 
 
   C:0378H         LINE#         40
@@ -419,7 +419,7 @@ SYMBOL TABLE OF MODULE:  ..\output\IET (?C_STARTUP)
   C:02CFH         LINE#         77
   C:02CFH         LINE#         78
   C:02D1H         LINE#         80
-BL51 BANKED LINKER/LOCATER V6.05                                                      06/04/2017  18:38:51  PAGE 8
+BL51 BANKED LINKER/LOCATER V6.05                                                      06/04/2017  19:03:50  PAGE 8
 
 
   C:02DFH         LINE#         81
@@ -479,7 +479,7 @@ SYMBOL TABLE OF MODULE:  ..\output\IET (?C_STARTUP)
   C:00DBH         LINE#         133
   C:00DDH         LINE#         134
   C:00E4H         LINE#         135
-BL51 BANKED LINKER/LOCATER V6.05                                                      06/04/2017  18:38:51  PAGE 9
+BL51 BANKED LINKER/LOCATER V6.05                                                      06/04/2017  19:03:50  PAGE 9
 
 
   C:00E9H         LINE#         136
@@ -539,7 +539,7 @@ SYMBOL TABLE OF MODULE:  ..\output\IET (?C_STARTUP)
   C:01A8H         LINE#         189
   C:01ADH         LINE#         190
   C:01B2H         LINE#         191
-BL51 BANKED LINKER/LOCATER V6.05                                                      06/04/2017  18:38:51  PAGE 10
+BL51 BANKED LINKER/LOCATER V6.05                                                      06/04/2017  19:03:50  PAGE 10
 
 
   C:01B6H         LINE#         192
@@ -599,7 +599,7 @@ SYMBOL TABLE OF MODULE:  ..\output\IET (?C_STARTUP)
 
   -------         MODULE        ?C?CLDPTR
   C:0289H         PUBLIC        ?C?CLDPTR
-BL51 BANKED LINKER/LOCATER V6.05                                                      06/04/2017  18:38:51  PAGE 11
+BL51 BANKED LINKER/LOCATER V6.05                                                      06/04/2017  19:03:50  PAGE 11
 
 
   -------         ENDMOD        ?C?CLDPTR
