@@ -1,0 +1,6 @@
+"STARTUP.obj",
+".\InnerE2PROM.obj",
+".\main.obj",
+".\LCD12864.obj" 
+TO "IET" 
+RAMSIZE(256) 

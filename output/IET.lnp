@@ -1,0 +1,6 @@
+"..\output\STARTUP.obj",
+"..\output\InnerE2PROM.obj",
+"..\output\main.obj",
+"..\output\LCD12864.obj" 
+TO "..\output\IET" 
+PRINT(".\IET.m51") RAMSIZE(256) 
